@@ -1,0 +1,15 @@
+{
+  "name": "HackParking",
+  "description": "Parking or No Parking",
+  "version": "1.0.1",
+  "scripts": {
+    "start": "node server/server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "cors": "^2.7.1",
+    "express": "^4.13.3",
+    "request": "^2.65.0",
+    "require": "^2.4.20"
+  }
+}
