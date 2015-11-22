@@ -1,4 +1,4 @@
-var data = [
+var dummyData = [
   {
     "deviceId": "56510f1d755b1af9df4d8099",
     "spotAvailable": false,
