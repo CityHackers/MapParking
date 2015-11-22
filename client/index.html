@@ -17,8 +17,9 @@
   </head>
   <body>
     <div id="map"></div>
+    <script src="data.js"></script>
     <script>
-
+    console.log(data);
 // This example adds a marker to indicate the position of openParkingSpot near Palace of Fine Arts, San Francisco
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -27,11 +28,23 @@ function initMap() {
   });
 
   var image = 'https://www.medicalschemes.com/imgs/green_dot.png';
-  var openParkSpot = new google.maps.Marker({
-    position: {lat: 37.798789, lng: -122.442599},
-    map: map,
-    icon: image
-  });
+
+  var mapPoints = [];
+
+  for (var i = 0; i < data.length; i++) {
+    mapPoints.push(new google.maps.Marker({
+      position: { lat: data[i].latitude, lng: data[i].longitude },
+      map: map,
+      icon: image
+    }));
+  };
+
+  setInterval(togglePoint, 500);
+  function togglePoint(){
+    var randIndex = Math.floor(Math.random() * mapPoints.length);
+    var visibility = Boolean(Math.floor(Math.random() *2));
+    mapPoints[randIndex].setVisible(visibility);
+  }
 }
 
     </script>
