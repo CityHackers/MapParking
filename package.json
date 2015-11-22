@@ -3,7 +3,7 @@
   "description": "Parking or No Parking",
   "version": "1.0.1",
   "scripts": {
-    "start": "node server/server.js"
+    "start": "npm install && node server/server.js"
   },
   "dependencies": {
     "body-parser": "^1.14.1",
