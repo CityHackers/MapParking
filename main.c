@@ -1,21 +1,4 @@
-/* HC-SR04 Sensor
-   https://www.dealextreme.com/p/hc-sr04-ultrasonic-sensor-distance-measuring-module-133696
-  
-   This sketch reads a HC-SR04 ultrasonic rangefinder and returns the
-   distance to the closest object in range. To do this, it sends a pulse
-   to the sensor to initiate a reading, then listens for a pulse 
-   to return.  The length of the returning pulse is proportional to 
-   the distance of the object from the sensor.
-     
-   The circuit:
-  * VCC connection of the sensor attached to +5V
-  * GND connection of the sensor attached to ground
-  * TRIG connection of the sensor attached to digital pin 2
-  * ECHO connection of the sensor attached to digital pin 4
-   Original code for Ping))) example was created by David A. Mellis
-   Adapted for HC-SR04 by Tautvidas Sipavicius
-   This example code is in the public domain.
- */
+
 #include <SoftwareSerial.h>
 SoftwareSerial sigfox(3, 2);
 
