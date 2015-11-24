@@ -22,6 +22,12 @@ SoftwareSerial sigfox(3, 2);
 const int trigPin = 13;
 const int echoPin = 12;
 
+typedef int bool;
+#define TRUE 1
+#define FALSE 0
+
+int time_elapsed = 0;
+boolean parked = FALSE;
 void setup() {
   // initialize serial communication:
   pinMode(3, INPUT);
@@ -55,9 +61,35 @@ void loop()
   inches = microsecondsToInches(duration);
   cm = microsecondsToCentimeters(duration);
 
+  // If there is a change in the parkingAvailable,
+    // if whether proximity is less than 12 inches 
+      // time_elapsed++
+      //if  tme_elapsed > 3s, 
+        // set parkingAvailable = false
+    // else if the proximity is more than 12 inches
+    // set parkingAvailable = true
+    // set time_elapsed = 0
   if(inches < 12){
-    char* data_to_send="66";
-    SIGFOX_SEND(data_to_send);
+    if(parked == FALSE){
+      parked=TRUE;
+      time_elapsed=0;
+    }
+    time_elapsed++;
+    if(time_elapsed==3){
+      char* data_to_send="PARKED:TRUE";
+      SIGFOX_SEND(data_to_send);
+    }
+  }
+  else{
+    if(parked == TRUE){
+      parked=FALSE;
+      time_elapsed=0;
+    }
+    time_elapsed++;
+    if(time_elapsed==3){
+      char* data_to_send="PARKED:FALSE";
+      SIGFOX_SEND(data_to_send);
+    }
   }
   
   Serial.print(inches);
@@ -66,24 +98,17 @@ void loop()
   Serial.print("cm");
   Serial.println();
   
-  delay(2000);
+  delay(1000);
 }
 
 String SIGFOX_SEND(char* data){
-  Serial.print("sent sigfox");
-
+ Serial.print("sent sigfox");
  String protocol="AT$SF=";
-
  protocol+=(String)data;
-
  protocol+="\r";
-
  sigfox.print(String(protocol));
-
  delay(1000);
-
  return "OK";
-
 }
 
 long microsecondsToInches(long microseconds)
