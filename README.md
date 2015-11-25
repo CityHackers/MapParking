@@ -6,5 +6,6 @@ MapParking is a proof-of-concept project utilizing Ultrasonic Sensors to detect 
 **Hardware Design**
 ![Alt text](/hardware.jpg?raw=true "Hardware Design")
 
-
+**Frontend Screenshot**
+![Alt text](/demo.jpg?raw=true "Frontend Design")
 
